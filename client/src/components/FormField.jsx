@@ -28,7 +28,7 @@ const FormField = ({
             Surprise me
           </button>
         )}
-      </div>{" "}
+      </div>
       <input
         type={type}
         id={name}
