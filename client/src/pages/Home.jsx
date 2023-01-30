@@ -7,6 +7,31 @@ const Home = () => {
 
   const [searchText, setsearchText] = useState("HELLO ME");
 
+  const fetchPosts = async () => {
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://localhost:8080/api/v1/post", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        const result = await response.json();
+        setAllPosts(result.data.reverse());
+      }
+    } catch (err) {
+      alert(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
   const RenderCards = ({ data, title }) => {
     if (data?.length > 0) {
       return data.map((post) => <Card key={post._id} {...post} />);
@@ -50,9 +75,9 @@ const Home = () => {
             )}
             <div className="grid grid-cols-4 gap-3">
               {searchText ? (
-                <RenderCards data={[]} title="No search results found" />
+                <RenderCards data={allPosts} title="No search results found" />
               ) : (
-                <RenderCards data={[]} title="No posts found" />
+                <RenderCards data={allPosts} title="No posts found" />
               )}
             </div>
           </>
