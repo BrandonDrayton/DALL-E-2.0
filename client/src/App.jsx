@@ -5,9 +5,14 @@ import { logo } from "./assets";
 import { Home, CreatePost } from "./pages";
 
 const App = () => {
+  if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    document.documentElement.classList.add('dark')
+  } else {
+    document.documentElement.classList.remove('dark')
+  }
   return (
     <BrowserRouter>
-      <header className="w-full flex justify-between items-center bg-white px-4 py-4 border-b border-b[#e6ebf4]">
+      <header className="w-full flex justify-between items-center bg-white px-4 py-4 border-b border-b[#e6ebf4] dark:bg-slate-800">
         <Link to="/">
           <img src={logo} alt="logo" className="w-28 object-contain" />
         </Link>
@@ -18,7 +23,7 @@ const App = () => {
           Create
         </Link>
       </header>
-      <main className="px-4 py-8 w-full bg-[#f9fafe] min-h-[calc(100vh-73px)]">
+      <main className="px-4 py-8 w-full bg-[#f9fafe] min-h-[calc(100vh-73px)] dark:bg-slate-800">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/create-post" element={<CreatePost />} />

@@ -69,7 +69,7 @@ const Home = () => {
       <div>
         <h1 className="font-extrabold text-[#222328] text-[32px]">
           The Community Showcase{" "}
-          {loading ? "(Some times Render needs time to wake up)" : null}
+          {loading ? "(Render needs a minute to wake up the server)" : null}
         </h1>
         <p className="mt-2 text-[#666e75] text-[16px] max-w-[500px]">
           <nobr>
@@ -98,7 +98,7 @@ const Home = () => {
             {searchText && (
               <h2 className="font-medium text-[#666e75] text-xl mb-3">
                 Showing results for
-                <span className="[#222328]">{searchText}</span>
+                <span className="[#222328]"> {searchText}</span>
               </h2>
             )}
             <div className="grid grid-cols-4 gap-3">
